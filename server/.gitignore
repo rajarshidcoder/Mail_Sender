@@ -1,0 +1,41 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.so
+*.pyd
+*.dll
+
+# Virtual environment
+venv/
+.env
+*.env
+
+# Flask extensions and logs
+instance/
+*.log
+logs/
+*.sqlite3
+*.db
+migrations/
+
+# Python package files
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Jupyter Notebooks (if used)
+.ipynb_checkpoints/
+
+# Compiled files
+*.out
+*.o
+*.pyc

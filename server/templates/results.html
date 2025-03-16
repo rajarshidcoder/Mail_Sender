@@ -1,0 +1,45 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Email Sending Results</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Email Sending Results</h1>
+
+      {% with messages = get_flashed_messages() %} {% if messages %} {% for
+      message in messages %}
+      <div class="alert">{{ message }}</div>
+      {% endfor %} {% endif %} {% endwith %}
+
+      <div class="card">
+        <div class="results">
+          <h2>Summary</h2>
+          <p>
+            Emails Successfully Sent:
+            <span class="success">{{ sent_count }}</span>
+          </p>
+          <p>Failed Emails: <span class="error">{{ failed_count }}</span></p>
+
+          {% if error_message %}
+          <div class="error-details">
+            <h3>Error Details</h3>
+            <p>{{ error_message }}</p>
+          </div>
+          {% endif %}
+
+          <div class="form-group">
+            <a href="{{ url_for('index') }}" class="btn btn-secondary"
+              >Send Another Batch</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Sender App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Automated Email Sender</h1>
+        
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        
+        <div class="card">
+            <form action="{{ url_for('upload_files') }}" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="html_file">HTML Template:</label>
+                    <input type="file" name="html_file" id="html_file" accept=".html" required>
+                    <p class="help-text">Upload your HTML email template with placeholders like [Name], [Date], etc.</p>
+                </div>
+                
+                <div class="form-group">
+                    <label for="csv_file">CSV Data File:</label>
+                    <input type="file" name="csv_file" id="csv_file" accept=".csv" required>
+                    <p class="help-text">Upload CSV with headers and data for each recipient</p>
+                </div>
+                
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Upload & Continue</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
