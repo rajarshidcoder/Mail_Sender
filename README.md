@@ -12,7 +12,7 @@ A Python-based tool to send personalized emails to recipients listed in a CSV fi
 
 1. Clone the repository:  
    ```bash
-   git clone https://github.com/your-username/personalized-email-sender.git
+   git clone https://github.com/rajarshidcoder/Mail_Sender.git
    cd personalized-email-sender
    ```
 
