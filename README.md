@@ -13,7 +13,7 @@ A Python-based tool to send personalized emails to recipients listed in a CSV fi
 1. Clone the repository:  
    ```bash
    git clone https://github.com/rajarshidcoder/Mail_Sender.git
-   cd personalized-email-sender
+   cd Mail_Sender
    ```
 
 2. Install dependencies:  
@@ -23,6 +23,6 @@ A Python-based tool to send personalized emails to recipients listed in a CSV fi
 
 3. Set up environment variables for email credentials:  
    ```bash
-   EMAIL_USER="your-email@example.com"
-   EMAIL_PASS="your-email-password"
+   EMAIL="your-email@example.com"
+   PASS="your-email-password"
    ```
