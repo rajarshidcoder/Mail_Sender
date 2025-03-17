@@ -10,19 +10,63 @@ A Python-based tool to send personalized emails to recipients listed in a CSV fi
 
 ### 🛠️ Installation  
 
-1. Clone the repository:  
-   ```bash
-   git clone https://github.com/rajarshidcoder/Mail_Sender.git
-   cd Mail_Sender
-   ```
+1️⃣ **Clone the repository:**  
+```bash
+git clone https://github.com/rajarshidcoder/Mail_Sender.git
+cd Mail_Sender
+```   
 
-2. Install dependencies:  
+3️⃣ **Set up environment variables for email credentials:**  
+```bash
+EMAIL="your-email@example.com"
+PASS="your-email-password"
+```  
+
+4️⃣ **Run the application:**  
+
+   🔹 **Navigate to the `server` directory:**  
+   ```bash
+   cd server
+   ```  
+
+   🔹 **Create a virtual environment (same for all OS):**  
+   ```bash
+   python -m venv .venv
+   ```  
+
+   🔹 **Activate the virtual environment:**  
+
+   - **For Windows (Command Prompt - cmd):**  
+     ```cmd
+     .venv\Scripts\activate
+     ```  
+
+   - **For Windows (PowerShell):**  
+     ```powershell
+     .venv\Scripts\Activate.ps1
+     ```  
+
+   - **For Windows (Git Bash):**  
+     ```bash
+     source .venv/Scripts/activate
+     ```  
+
+   - **For macOS/Linux (Terminal):**  
+     ```bash
+     source .venv/bin/activate
+     ```  
+
+   🔹 **Install required dependencies:**  
    ```bash
    pip install -r requirements.txt
-   ```
+   ```  
 
-3. Set up environment variables for email credentials:  
+   🔹 **Start the application:**  
    ```bash
-   EMAIL="your-email@example.com"
-   PASS="your-email-password"
+   py app.py
+   ```  
+
+   🔹 **Open your browser and go to:**  
    ```
+   http://localhost:5000
+   ```  
