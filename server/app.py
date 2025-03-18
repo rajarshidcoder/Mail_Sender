@@ -164,6 +164,7 @@ def send_emails():
                 msg["Subject"] = email_subject
                 msg["From"] = sender_email
                 msg["To"] = recipient_email
+                msg.attach(MIMEText(personalized_html,'html'))
                 smtp.sendmail(sender_email, recipient_email, msg.as_string())
                 sent_count += 1
 
