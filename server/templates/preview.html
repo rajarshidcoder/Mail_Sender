@@ -1,73 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Map Fields & Send</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+  <body>
     <div class="container">
-        <h1>Configure Email Sending</h1>
-        
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                {% for message in messages %}
-                    <div class="alert">{{ message }}</div>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
-        
-        <div class="card">
-            <form action="{{ url_for('send_emails') }}" method="post">
-                <h2>Email Settings</h2>
-                <div class="form-group">
-                    <label for="sender_email">Sender Email:</label>
-                    <input type="email" name="sender_email" id="sender_email" placeholder="Your Gmail address">
-                    <p class="help-text">Leave blank to use EMAIL from .env file</p>
-                </div>
-                
-                <div class="form-group">
-                    <label for="sender_password">Email Password:</label>
-                    <input type="password" name="sender_password" id="sender_password" placeholder="Your Gmail password/app password">
-                    <p class="help-text">Leave blank to use PASS from .env file</p>
-                </div>
-                
-                <div class="form-group">
-                    <label for="email_subject">Email Subject:</label>
-                    <input type="text" name="email_subject" id="email_subject" placeholder="Email subject line" value="Evaluation Process for Coding Club.">
-                </div>
-                
-                <div class="form-group">
-                    <label for="email_column">Select Email Column:</label>
-                    <select name="email_column" id="email_column" required>
-                        <option value="">-- Select Column --</option>
-                        {% for header in csv_headers %}
-                        <option value="{{ header }}">{{ header }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                
-                <h2>Map Template Placeholders to CSV Columns</h2>
-                {% for placeholder in placeholders %}
-                <div class="form-group">
-                    <label for="map_{{ placeholder }}">{{ placeholder }}:</label>
-                    <select name="map_{{ placeholder }}" id="map_{{ placeholder }}" required>
-                        <option value="">-- Select Column --</option>
-                        {% for header in csv_headers %}
-                        <option value="{{ header }}">{{ header }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                {% endfor %}
-                
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Send Emails</button>
-                </div>
-            </form>
-        </div>
+      <h1>Configure Email Sending</h1>
+
+      {% with messages = get_flashed_messages() %} {% if messages %} {% for
+      message in messages %}
+      <div class="alert">{{ message }}</div>
+      {% endfor %} {% endif %} {% endwith %}
+
+      <div class="card">
+        <form action="{{ url_for('send_emails') }}" method="post">
+          <h2>Email Settings</h2>
+          <div class="form-group">
+            <label for="sender_email">Sender Email:</label>
+            <input
+              type="email"
+              name="sender_email"
+              id="sender_email"
+              placeholder="Your Gmail address"
+            />
+            <p class="help-text">Leave blank to use EMAIL from .env file</p>
+          </div>
+
+          <div class="form-group">
+            <label for="sender_password">Email Password:</label>
+            <input
+              type="password"
+              name="sender_password"
+              id="sender_password"
+              placeholder="Your Gmail password/app password"
+            />
+            <p class="help-text">Leave blank to use PASS from .env file</p>
+          </div>
+
+          <div class="form-group">
+            <label for="email_subject">Email Subject:</label>
+            <input
+              type="text"
+              name="email_subject"
+              id="email_subject"
+              placeholder="Email subject line"
+              value="Discussion Process for Coding Club."
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="email_column">Select Email Column:</label>
+            <select name="email_column" id="email_column" required>
+              <option value="">-- Select Column --</option>
+              {% for header in csv_headers %}
+              <option value="{{ header }}">{{ header }}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <h2>Map Template Placeholders to CSV Columns</h2>
+          {% for placeholder in placeholders %}
+          <div class="form-group">
+            <label for="map_{{ placeholder }}">{{ placeholder }}:</label>
+            <select
+              name="map_{{ placeholder }}"
+              id="map_{{ placeholder }}"
+              required
+            >
+              <option value="">-- Select Column --</option>
+              {% for header in csv_headers %}
+              <option value="{{ header }}">{{ header }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          {% endfor %}
+
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary">Send Emails</button>
+          </div>
+        </form>
+      </div>
     </div>
-</body>
+  </body>
 </html>
-
-
