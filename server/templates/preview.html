@@ -8,18 +8,51 @@
       rel="stylesheet"
       href="{{ url_for('static', filename='css/style.css') }}"
     />
+    <style>
+      /* Loader Styles */
+      .loader-container {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+      }
+      
+      .loader {
+        border: 5px solid #f3f3f3;
+        border-top: 5px solid #3498db;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 2s linear infinite;
+      }
+      
+      .loader-text {
+        color: white;
+        margin-top: 20px;
+        font-weight: bold;
+      }
+      
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    </style>
   </head>
   <body>
     <div class="container">
       <h1>Configure Email Sending</h1>
-
       {% with messages = get_flashed_messages() %} {% if messages %} {% for
       message in messages %}
       <div class="alert">{{ message }}</div>
       {% endfor %} {% endif %} {% endwith %}
-
       <div class="card">
-        <form action="{{ url_for('send_emails') }}" method="post">
+        <form action="{{ url_for('send_emails') }}" method="post" id="emailForm">
           <h2>Email Settings</h2>
           <div class="form-group">
             <label for="sender_email">Sender Email:</label>
@@ -31,7 +64,6 @@
             />
             <p class="help-text">Leave blank to use EMAIL from .env file</p>
           </div>
-
           <div class="form-group">
             <label for="sender_password">Email Password:</label>
             <input
@@ -42,7 +74,6 @@
             />
             <p class="help-text">Leave blank to use PASS from .env file</p>
           </div>
-
           <div class="form-group">
             <label for="email_subject">Email Subject:</label>
             <input
@@ -53,17 +84,15 @@
               value="Discussion Process for Coding Club."
             />
           </div>
-
           <div class="form-group">
             <label for="email_column">Select Email Column:</label>
             <select name="email_column" id="email_column" required>
               <option value="">-- Select Column --</option>
               {% for header in csv_headers %}
-              <option value="{{ header }}">{{ header }}</option>
+              <option value="{{ header }}" {% if header.lower() == 'email' %}selected{% endif %}>{{ header }}</option>
               {% endfor %}
             </select>
           </div>
-
           <h2>Map Template Placeholders to CSV Columns</h2>
           {% for placeholder in placeholders %}
           <div class="form-group">
@@ -75,17 +104,31 @@
             >
               <option value="">-- Select Column --</option>
               {% for header in csv_headers %}
-              <option value="{{ header }}">{{ header }}</option>
+              <option value="{{ header }}" {% if header.lower() == placeholder.lower() %}selected{% endif %}>{{ header }}</option>
               {% endfor %}
             </select>
           </div>
           {% endfor %}
-
           <div class="form-group">
-            <button type="submit" class="btn btn-primary">Send Emails</button>
+            <button type="submit" class="btn btn-primary" id="sendButton">Send Emails</button>
           </div>
         </form>
       </div>
     </div>
+    
+    <!-- Loader -->
+    <div class="loader-container" id="loaderContainer">
+      <div class="loader-content">
+        <div class="loader"></div>
+        <p class="loader-text">Sending emails, please wait...</p>
+      </div>
+    </div>
+    
+    <script>
+      document.getElementById('emailForm').addEventListener('submit', function() {
+        document.getElementById('loaderContainer').style.display = 'flex';
+        document.getElementById('sendButton').disabled = true;
+      });
+    </script>
   </body>
 </html>
